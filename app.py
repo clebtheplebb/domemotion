@@ -11,10 +11,7 @@ st.header("By: Aditi, Angela, Caleb, Coco, Roshan")
 
 le = LabelEncoder()
 le.classes_ = load("dtle.joblib")
-dtscaler = StandardScaler()
-dtscaler.scale_ = load("dtscaler.joblib")
-svmscaler = StandardScaler()
-svmscaler.scale_ = load("svmscaler.joblib")
+dtsvmscaler = load("scaler.joblib")
 
 nn = keras.models.load_model("neuralnetwork.keras")
 nn.compile(optimizer="Adam", loss="categorical_crossentropy", metrics=["accuracy"])
@@ -73,8 +70,8 @@ with st.form("input"):
 
     if submitted:
         x = np.array([[age, gender, platform, min_per_day, posts_per_day, likes_received_per_day, comments_per_day, msg_per_day]])
-        svmx = svmscaler.fit_transform(x)
-        dtx = dtscaler.fit_transform(x)
+        svmx = dtsvmscaler.fit_transform(x)
+        dtx = dtsvmscaler.fit_transform(x)
         nnpred = nn.predict(x)
         nnpred = np.argmax(nnpred, axis=1)
         svmpred = svm.predict(svmx)
