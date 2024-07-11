@@ -1,11 +1,12 @@
 import streamlit as st
 import pandas as pd
+import keras
 from joblib import load
 
 st.title("Dominant Emotion Classifier Demo")
 st.header("By: Aditi, Angela, Caleb, Coco, Roshan")
 
-nn = load("neuralnetwork.joblib")
+nn = keras.models.load_model("neuralnetwork.keras")
 
 def getUserInput():
     age = st.number_input("What is your age?", 0, 100, 0, int)
