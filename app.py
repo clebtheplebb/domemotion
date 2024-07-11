@@ -20,5 +20,27 @@ with st.form("input"):
     msg_per_day = st.number_input("How many messages do you send per day? (Includes sending vids/imgs)")
 
     submitted = st.form_submit_button("Submit")
+    if gender == "Female":
+        gender = 0
+    elif gender == "Male":
+        gender = 1
+    elif gender == "Non-binary":
+        gender = 2
+    
+    if platform == "Facebook":
+        platform = 0
+    elif platform == "Instagram":
+        platform = 1
+    elif platform == "LinkedIn":
+        platform = 2
+    elif platform == "Snapchat":
+        platform = 3
+    elif platform == "Telegram":
+        platform = 4 
+    elif platform == "Twitter":
+        platform = 5
+    elif platform == "Whatsapp":
+        platform = 6
+
     if submitted:
         st.write(nn.predict(np.array([[age], [gender], [platform], [min_per_day], [posts_per_day], [likes_received_per_day], [comments_per_day], [msg_per_day]])))
