@@ -8,6 +8,8 @@ st.title("Dominant Emotion Classifier Demo")
 st.header("By: Aditi, Angela, Caleb, Coco, Roshan")
 
 nn = keras.models.load_model("neuralnetwork.keras")
+nn.compile(optimizer="Adam", loss="categorical_crossentropy", metrics=["accuracy"])
+
 
 with st.form("input"):
     age = st.number_input("What is your age?", 0, 100, 0, 1)
