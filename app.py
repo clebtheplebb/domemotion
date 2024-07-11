@@ -10,6 +10,14 @@ st.header("By: Aditi, Angela, Caleb, Coco, Roshan")
 nn = keras.models.load_model("neuralnetwork.keras")
 nn.compile(optimizer="Adam", loss="categorical_crossentropy", metrics=["accuracy"])
 
+emotion_labels = {
+    '0' : 'Anger',
+    '1' : 'Anxiety',
+    '2' : 'Boredom',
+    '3' : 'Happiness',
+    '4' : 'Neutral',
+    '5' : 'Sadness'
+}
 
 with st.form("input"):
     age = st.number_input("What is your age?", 0, 100, 0, 1)
@@ -45,6 +53,7 @@ with st.form("input"):
         platform = 6
 
     if submitted:
-        x = np.array([[age, gender, platform, min_per_day, posts_per_day, likes_received_per_day, comments_per_day, msg_per_day]])
+        x = np.array([[age], [gender], [platform], [min_per_day], [posts_per_day], [likes_received_per_day], [comments_per_day], [msg_per_day]])
         pred = nn.predict(x)
-        st.write(pred)
+        pred = np.argamx(pred, axis=1)
+        st.write("Our model predicts that your dominant emotion is: ", emotion_labels[pred])
