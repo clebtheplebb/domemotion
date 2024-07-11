@@ -2,13 +2,24 @@ import streamlit as st
 import pandas as pd
 import keras
 import numpy as np
+import sklearn
+from sklearn.preprocessing import StandardScaler, LabelEncoder
 from joblib import load
 
 st.title("Dominant Emotion Classifier Demo")
 st.header("By: Aditi, Angela, Caleb, Coco, Roshan")
 
+le = LabelEncoder()
+le.classes_ = load("dtle.joblib")
+dtscaler = StandardScaler()
+dtscaler.scale_ = load("dtscaler.joblib")
+svmscaler = StandardScaler()
+svmscaler.scale_ = load("svmscaler.joblib")
+
 nn = keras.models.load_model("neuralnetwork.keras")
 nn.compile(optimizer="Adam", loss="categorical_crossentropy", metrics=["accuracy"])
+svm = load("svm.joblib")
+dt = load("dt.joblib")
 
 emotion_labels = {
     '0' : 'Anger',
@@ -18,6 +29,14 @@ emotion_labels = {
     '4' : 'Neutral',
     '5' : 'Sadness'
 }
+
+@st.experimental_dialog("Model Prediction")
+def prediction(nn, svm, dt):
+    nnstring = "Neural Network Prediction: " + emotion_labels[str(nn[0])]
+    svmstring = "SVM Prediction: " + emotion_labels[str(svm[0])]
+    dtstring = "Decision Tree Prediction: " + emotion_labels[str(dt[0])]
+    st.write(nnstring)
+    
 
 with st.form("input"):
     age = st.number_input("What is your age?", 0, 100, 0, 1)
@@ -54,6 +73,10 @@ with st.form("input"):
 
     if submitted:
         x = np.array([[age, gender, platform, min_per_day, posts_per_day, likes_received_per_day, comments_per_day, msg_per_day]])
-        pred = nn.predict(x)
-        pred = np.argamx(pred, axis=1)
-        st.write("Our model predicts that your dominant emotion is: ", emotion_labels[pred])
+        svmx = svmscaler.fit_transform(x)
+        dtx = dtscaler.fit_transform(x)
+        nnpred = nn.predict(x)
+        nnpred = np.argmax(nnpred, axis=1)
+        svmpred = svm.predict(svmx)
+        dtpred = dt.predict(dtx)
+        prediction(nnpred, svmpred, dtpred)
