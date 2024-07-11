@@ -45,6 +45,6 @@ with st.form("input"):
         platform = 6
 
     if submitted:
-        x = np.array([[age], [gender], [platform], [min_per_day], [posts_per_day], [likes_received_per_day], [comments_per_day], [msg_per_day]])
+        x = np.array([[age, gender, platform, min_per_day, posts_per_day, likes_received_per_day, comments_per_day, msg_per_day]])
         pred = nn.predict(x)
         st.write(pred)
