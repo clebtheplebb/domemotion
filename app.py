@@ -19,6 +19,10 @@ emotion_labels = {
     '5' : 'Sadness'
 }
 
+@st.experimental_dialog("Neural Network Prediction")
+def prediction(pred):
+    st.write(emotion_labels[str(pred[0])])
+
 with st.form("input"):
     age = st.number_input("What is your age?", 0, 100, 0, 1)
     gender = st.selectbox("What is your gender?", ["Male", "Female", "Non-binary"])
@@ -56,4 +60,4 @@ with st.form("input"):
         x = np.array([[age, gender, platform, min_per_day, posts_per_day, likes_received_per_day, comments_per_day, msg_per_day]])
         pred = nn.predict(x)
         pred = np.argmax(pred, axis=1)
-        st.write("Our model predicts that your dominant emotion is: " + emotion_labels[str(pred[0])])
+        prediction(pred)
