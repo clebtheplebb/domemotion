@@ -9,7 +9,7 @@ st.header("By: Aditi, Angela, Caleb, Coco, Roshan")
 nn = keras.models.load_model("neuralnetwork.keras")
 
 def getUserInput():
-    age = st.number_input("What is your age?", 0, 100, 0, int)
+    age = st.number_input("What is your age?", 0, 100, 0, 1)
     gender = st.selectbox("What is your gender?", ["Male", "Female", "Non-binary"])
     platform = st.selectbox("Which social media platform do you use?", ["Facebook", "Instagram", "LinkedIn", "Snapchat", "Telegram", "Twitter", "Whatsapp"])
     min_per_day = st.number_input("How many minutes a day do you use this platform?")
