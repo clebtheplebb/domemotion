@@ -52,7 +52,7 @@ def prediction(nn, svm, dt, logreg, rf, knneu, knnman, knncos):
     
 
 with st.form("input"):
-    age = st.number_input("What is your age?", 0, 100, 0, 1)
+    age = st.slider("What is your age?", 0, 100, step=1)
     gender = st.selectbox("What is your gender?", ["Male", "Female", "Non-binary"])
     platform = st.selectbox("Which social media platform do you use?", ["Facebook", "Instagram", "LinkedIn", "Snapchat", "Telegram", "Twitter", "Whatsapp"])
     min_per_day = st.number_input("How many minutes a day do you use this platform?")
