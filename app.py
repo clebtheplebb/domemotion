@@ -85,14 +85,14 @@ with st.form("input"):
         platform = 6
 
     if submitted:
-        x = {'Age' : age, 
-         'Gender' : gender, 
-         'Plat' : platform, 
-         'Daily_Usage_Time (minutes)' : min_per_day, 
-         'Posts_Per_Day' : posts_per_day, 
-         'Likes_Received_Per_Day' : likes_received_per_day,
-         'Comments_Received_Per_Day' : comments_per_day,
-         'Messages_Sent_Per_Day' : msg_per_day}
+        x = {'Age' : [age], 
+         'Gender' : [gender], 
+         'Plat' : [platform], 
+         'Daily_Usage_Time (minutes)' : [min_per_day], 
+         'Posts_Per_Day' : [posts_per_day], 
+         'Likes_Received_Per_Day' : [likes_received_per_day],
+         'Comments_Received_Per_Day' : [comments_per_day],
+         'Messages_Sent_Per_Day' : [msg_per_day]}
         x = pd.DataFrame(data=x)
         svmx = dtsvmscaler.fit_transform(x)
         dtx = dtsvmscaler.fit_transform(x[['Daily_Usage_Time (minutes)', 'Posts_Per_Day', 'Likes_Received_Per_Day', 'Comments_Received_Per_Day', 'Messages_Sent_Per_Day']])
