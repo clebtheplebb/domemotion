@@ -12,11 +12,18 @@ st.header("By: Aditi, Angela, Caleb, Coco, Roshan")
 le = LabelEncoder()
 le.classes_ = load("dtle.joblib")
 dtsvmscaler = load("scaler.joblib")
+minmaxscaler= load("minmaxscaler.joblib")
 
 nn = keras.models.load_model("neuralnetwork.keras")
 nn.compile(optimizer="Adam", loss="categorical_crossentropy", metrics=["accuracy"])
 svm = load("svm.joblib")
 dt = load("dt.joblib")
+log_reg = load("log_reg.joblib")
+rf = load("rf.joblib")
+knn_eu = load("knn_euclidean.joblib")
+knn_man = load("knn_manhattan.joblib")
+knn_cos = load("knn_cosine.joblib")
+
 
 emotion_labels = {
     "0" : "Anger",
@@ -28,13 +35,16 @@ emotion_labels = {
 }
 
 @st.experimental_dialog("Model Prediction")
-def prediction(nn, svm, dt):
-    nnstring = "Neural Network Prediction: " + emotion_labels[str(nn[0])]
-    svmstring = "SVM Prediction: " + str(svm[0])
-    dtstring = "Decision Tree Prediction: " + emotion_labels[str(dt[0])]
-    st.write(nnstring)
-    st.write(svmstring)
-    st.write(dtstring)
+def prediction(nn, svm, dt, logreg, rf, knneu, knnman, knncos):
+    nnstring = f"Neural Network Prediction: {emotion_labels[str(nn[0])]}\n"
+    svmstring = f"SVM Prediction: {str(svm[0])}\n"
+    dtstring = f"Decision Tree Prediction: {emotion_labels[str(dt[0])]}\n" 
+    logregstring = f"Logistic Regression Prediction: {emotion_labels[str(logreg[0])]}\n"
+    rfstring = f"Random Forrest Prediction: {emotion_labels[str(rf[0])]}\n"
+    knneustring = f"kNN Euclidean Distance Prediction: {emotion_labels[str(knneu[0])]}\n"
+    knnmanstring = f"kNN Manhattan Distance Prediction: {emotion_labels[str(knnman[0])]}\n"
+    knncosstring = f"kNN Cosine Distance Prediction: {emotion_labels[str(knncos[0])]}"
+    st.write(logregstring+dtstring+rfstring+knneustring+knnmanstring+knncosstring+svmstring+nnstring)
     
 
 with st.form("input"):
@@ -73,9 +83,17 @@ with st.form("input"):
     if submitted:
         x = np.array([[age, gender, platform, min_per_day, posts_per_day, likes_received_per_day, comments_per_day, msg_per_day]])
         svmx = dtsvmscaler.fit_transform(x)
-        # dtx = dtsvmscaler.fit_transform(x)
+        dtx = dtsvmscaler.fit_transform(np.array([[min_per_day, posts_per_day, likes_received_per_day, comments_per_day, msg_per_day]]))
+        roshanx = minmaxscaler.fit_transform(x)
+
         nnpred = nn.predict(x)
         nnpred = np.argmax(nnpred, axis=1)
         svmpred = svm.predict(svmx)
-        # dtpred = dt.predict(dtx)
-        prediction(nnpred, svmpred, [0])
+        dtpred = dt.predict(dtx)
+        log_reg_pred = log_reg.predict(roshanx)
+        rf_pred = rf.predict(roshanx)
+        knneu_pred = knn_eu.predict(roshanx)
+        knnman_pred = knn_man.predict(roshanx)
+        knncos_pred = knn_cos.predict(roshanx)
+        prediction(nnpred, svmpred, dtpred, log_reg_pred, rf_pred, knneu_pred, knnman_pred, knncos_pred)
+
