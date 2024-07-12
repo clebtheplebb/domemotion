@@ -30,7 +30,7 @@ emotion_labels = {
 @st.experimental_dialog("Model Prediction")
 def prediction(nn, svm, dt):
     nnstring = "Neural Network Prediction: " + emotion_labels[str(nn[0])]
-    svmstring = "SVM Prediction: " + emotion_labels[str(svm[0])]
+    svmstring = "SVM Prediction: " + str(svm[0])
     dtstring = "Decision Tree Prediction: " + emotion_labels[str(dt[0])]
     st.write(nnstring)
     st.write(svmstring)
