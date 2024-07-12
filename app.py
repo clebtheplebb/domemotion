@@ -36,15 +36,15 @@ emotion_labels = {
 
 @st.experimental_dialog("Model Prediction")
 def prediction(nn, svm, dt, logreg, rf, knneu, knnman, knncos):
-    nnstring = f"Neural Network Prediction: {emotion_labels[str(nn[0])]}\n"
-    svmstring = f"SVM Prediction: {str(svm[0])}\n"
-    dtstring = f"Decision Tree Prediction: {emotion_labels[str(dt[0]-1)]}\n" 
-    logregstring = f"Logistic Regression Prediction: {emotion_labels[str(logreg[0])]}\n"
-    rfstring = f"Random Forrest Prediction: {emotion_labels[str(rf[0])]}\n"
-    knneustring = f"kNN Euclidean Distance Prediction: {emotion_labels[str(knneu[0])]}\n"
-    knnmanstring = f"kNN Manhattan Distance Prediction: {emotion_labels[str(knnman[0])]}\n"
-    knncosstring = f"kNN Cosine Distance Prediction: {emotion_labels[str(knncos[0])]}"
-    st.write(logregstring+dtstring+rfstring+knneustring+knnmanstring+knncosstring+svmstring+nnstring)
+    nnstring = "Neural Network Prediction:" + emotion_labels[str(nn[0])]
+    svmstring = "SVM Prediction:" + str(svm[0])
+    dtstring = "Decision Tree Prediction:" + emotion_labels[str(dt[0]-1)] 
+    logregstring = "Logistic Regression Prediction:" + emotion_labels[str(logreg[0])]
+    rfstring = "Random Forrest Prediction:" + emotion_labels[str(r[0])]
+    knneustring = "kNN Euclidean Distance Prediction:" + emotion_labels[str(knneu[0])]
+    knnmanstring = "kNN Manhattan Distance Prediction:" + emotion_labels[str(knnman[0])]
+    knncosstring = "kNN Cosine Distance Prediction:" + emotion_labels[str(knncos[0])]
+    st.write("test", nnstring)
     
 
 with st.form("input"):
