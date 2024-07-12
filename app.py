@@ -38,7 +38,7 @@ emotion_labels = {
 def prediction(nn, svm, dt, logreg, rf, knneu, knnman, knncos):
     nnstring = f"Neural Network Prediction: {emotion_labels[str(nn[0])]}\n"
     svmstring = f"SVM Prediction: {str(svm[0])}\n"
-    dtstring = f"Decision Tree Prediction: {emotion_labels[str(dt[0])]}\n" 
+    dtstring = f"Decision Tree Prediction: {emotion_labels[str(dt[0]-1)]}\n" 
     logregstring = f"Logistic Regression Prediction: {emotion_labels[str(logreg[0])]}\n"
     rfstring = f"Random Forrest Prediction: {emotion_labels[str(rf[0])]}\n"
     knneustring = f"kNN Euclidean Distance Prediction: {emotion_labels[str(knneu[0])]}\n"
