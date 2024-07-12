@@ -35,7 +35,7 @@ emotion_labels = {
     "5" : "Sadness"
 }
 
-@st.experimental_dialog("Model Prediction")
+@st.experimental_dialog("Model Predictions")
 def prediction(nn, svm, dt, logreg, rf, knneu, knnman, knncos):
     nnstring = "Neural Network Prediction (96.11%): " + emotion_labels[str(nn[0])] + "\n"
     svmstring = "SVM Prediction (95.00%): " + str(svm[0]) + "\n"
