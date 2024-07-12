@@ -37,14 +37,14 @@ emotion_labels = {
 
 @st.experimental_dialog("Model Predictions")
 def prediction(nn, svm, dt, logreg, rf, knneu, knnman, knncos):
-    nnstring = "Neural Network Prediction (96.11%): " + emotion_labels[str(nn[0])] + "\n"
-    svmstring = "SVM Prediction (95.00%): " + str(svm[0]) + "\n"
-    dtstring = "Decision Tree Prediction (80.27%): " + emotion_labels[str(dt[0]-1)] + "\n"
-    logregstring = "Logistic Regression Prediction (55.65%): " + emotion_labels[str(logreg[0])] + "\n"
-    rfstring = "Random Forrest Prediction (88.31%): " + emotion_labels[str(rf[0])] + "\n"
-    knneustring = "kNN Euclidean Distance Prediction (98.00%): " + emotion_labels[str(knneu[0])] + "\n"
-    knnmanstring = "kNN Manhattan Distance Prediction (97.09%): " + emotion_labels[str(knnman[0])] + "\n"
-    knncosstring = "kNN Cosine Distance Prediction (97.09%): " + emotion_labels[str(knncos[0])] + "\n"
+    nnstring = "Neural Network (96.11%): " + emotion_labels[str(nn[0])] + "\n"
+    svmstring = "SVM (95.00%): " + str(svm[0]) + "\n"
+    dtstring = "Decision Tree (80.27%): " + emotion_labels[str(dt[0]-1)] + "\n"
+    logregstring = "Logistic Regression (55.65%): " + emotion_labels[str(logreg[0])] + "\n"
+    rfstring = "Random Forrest (88.31%): " + emotion_labels[str(rf[0])] + "\n"
+    knneustring = "kNN Euclidean Distance (98.00%): " + emotion_labels[str(knneu[0])] + "\n"
+    knnmanstring = "kNN Manhattan Distance (97.09%): " + emotion_labels[str(knnman[0])] + "\n"
+    knncosstring = "kNN Cosine Distance (97.09%): " + emotion_labels[str(knncos[0])] + "\n"
 
     common = "Common Prediction: **" + mode([emotion_labels[str(nn[0])],str(svm[0]),emotion_labels[str(dt[0]-1)],emotion_labels[str(logreg[0])],emotion_labels[str(rf[0])],emotion_labels[str(knneu[0])],emotion_labels[str(knnman[0])],emotion_labels[str(knncos[0])]]) + "**"
     st.write(common)
@@ -52,7 +52,7 @@ def prediction(nn, svm, dt, logreg, rf, knneu, knnman, knncos):
     
 
 with st.form("input"):
-    age = st.slider("What is your age?", 0, 100, step=1)
+    age = st.number_input("What is your age?")
     gender = st.selectbox("What is your gender?", ["Male", "Female", "Non-binary"])
     platform = st.selectbox("Which social media platform do you use?", ["Facebook", "Instagram", "LinkedIn", "Snapchat", "Telegram", "Twitter", "Whatsapp"])
     min_per_day = st.number_input("How many minutes a day do you use this platform?")
