@@ -97,8 +97,7 @@ with st.form("input"):
         svmx = dtsvmscaler.fit_transform(x)
         dtx = dtsvmscaler.fit_transform(x[['Daily_Usage_Time (minutes)', 'Posts_Per_Day', 'Likes_Received_Per_Day', 'Comments_Received_Per_Day', 'Messages_Sent_Per_Day']])
         roshanx = x.copy
-        roshanx[['Age', 'Daily_Usage_Time (minutes)', 'Posts_Per_Day', 'Likes_Received_Per_Day', 'Comments_Received_Per_Day', 'Messages_Sent_Per_Day']] = minmaxscaler.fit_transform(
-    roshanx[['Age', 'Daily_Usage_Time (minutes)', 'Posts_Per_Day', 'Likes_Received_Per_Day', 'Comments_Received_Per_Day', 'Messages_Sent_Per_Day']])
+        roshanx[['Age', 'Daily_Usage_Time (minutes)', 'Posts_Per_Day', 'Likes_Received_Per_Day', 'Comments_Received_Per_Day', 'Messages_Sent_Per_Day']] = minmaxscaler.fit_transform(roshanx[['Age', 'Daily_Usage_Time (minutes)', 'Posts_Per_Day', 'Likes_Received_Per_Day', 'Comments_Received_Per_Day', 'Messages_Sent_Per_Day']])
 
         nnpred = nn.predict(x)
         nnpred = np.argmax(nnpred, axis=1)
