@@ -19,12 +19,12 @@ svm = load("svm.joblib")
 dt = load("dt.joblib")
 
 emotion_labels = {
-    '0' : 'Anger',
-    '1' : 'Anxiety',
-    '2' : 'Boredom',
-    '3' : 'Happiness',
-    '4' : 'Neutral',
-    '5' : 'Sadness'
+    "0" : "Anger",
+    "1" : "Anxiety",
+    "2" : "Boredom",
+    "3" : "Happiness",
+    "4" : "Neutral",
+    "5" : "Sadness"
 }
 
 @st.experimental_dialog("Model Prediction")
