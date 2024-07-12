@@ -36,7 +36,7 @@ emotion_labels = {
 
 @st.experimental_dialog("Model Prediction")
 def prediction(nn, svm, dt, logreg, rf, knneu, knnman, knncos):
-    nnstring = "Neural Network Prediction:" + emotion_labels[str(nn[0])]
+    nnstring = "Neural Network Prediction:" + emotion_labels[str(nn[0])] + "\n"
     svmstring = "SVM Prediction:" + str(svm[0])
     dtstring = "Decision Tree Prediction:" + emotion_labels[str(dt[0]-1)] 
     logregstring = "Logistic Regression Prediction:" + emotion_labels[str(logreg[0])]
@@ -44,7 +44,7 @@ def prediction(nn, svm, dt, logreg, rf, knneu, knnman, knncos):
     knneustring = "kNN Euclidean Distance Prediction:" + emotion_labels[str(knneu[0])]
     knnmanstring = "kNN Manhattan Distance Prediction:" + emotion_labels[str(knnman[0])]
     knncosstring = "kNN Cosine Distance Prediction:" + emotion_labels[str(knncos[0])]
-    st.write("test", emotion_labels[str(nn[0])])
+    st.text(nnstring+svmstring)
     
 
 with st.form("input"):
