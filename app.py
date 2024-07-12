@@ -33,6 +33,8 @@ def prediction(nn, svm, dt):
     svmstring = "SVM Prediction: " + emotion_labels[str(svm[0])]
     dtstring = "Decision Tree Prediction: " + emotion_labels[str(dt[0])]
     st.write(nnstring)
+    st.write(svmstring)
+    st.write(dtstring)
     
 
 with st.form("input"):
@@ -71,9 +73,9 @@ with st.form("input"):
     if submitted:
         x = np.array([[age, gender, platform, min_per_day, posts_per_day, likes_received_per_day, comments_per_day, msg_per_day]])
         svmx = dtsvmscaler.fit_transform(x)
-        dtx = dtsvmscaler.fit_transform(x)
+        # dtx = dtsvmscaler.fit_transform(x)
         nnpred = nn.predict(x)
         nnpred = np.argmax(nnpred, axis=1)
         svmpred = svm.predict(svmx)
-        dtpred = dt.predict(dtx)
-        prediction(nnpred, svmpred, dtpred)
+        # dtpred = dt.predict(dtx)
+        prediction(nnpred, svmpred, [0])
