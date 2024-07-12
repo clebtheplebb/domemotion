@@ -87,7 +87,7 @@ with st.form("input"):
     if submitted:
         x = {'Age' : [age], 
          'Gender' : [gender], 
-         'Plat' : [platform], 
+         'Platform' : [platform], 
          'Daily_Usage_Time (minutes)' : [min_per_day], 
          'Posts_Per_Day' : [posts_per_day], 
          'Likes_Received_Per_Day' : [likes_received_per_day],
