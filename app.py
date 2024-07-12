@@ -40,7 +40,7 @@ def prediction(nn, svm, dt, logreg, rf, knneu, knnman, knncos):
     svmstring = "SVM Prediction:" + str(svm[0])
     dtstring = "Decision Tree Prediction:" + emotion_labels[str(dt[0]-1)] 
     logregstring = "Logistic Regression Prediction:" + emotion_labels[str(logreg[0])]
-    rfstring = "Random Forrest Prediction:" + emotion_labels[str(r[0])]
+    rfstring = "Random Forrest Prediction:" + emotion_labels[str(rf[0])]
     knneustring = "kNN Euclidean Distance Prediction:" + emotion_labels[str(knneu[0])]
     knnmanstring = "kNN Manhattan Distance Prediction:" + emotion_labels[str(knnman[0])]
     knncosstring = "kNN Cosine Distance Prediction:" + emotion_labels[str(knncos[0])]
