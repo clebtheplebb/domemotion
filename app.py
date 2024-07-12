@@ -48,7 +48,7 @@ def prediction(nn, svm, dt, logreg, rf, knneu, knnman, knncos):
 
     common = "Common Prediction: **" + mode([emotion_labels[str(nn[0])],str(svm[0]),emotion_labels[str(dt[0]-1)],emotion_labels[str(logreg[0])],emotion_labels[str(rf[0])],emotion_labels[str(knneu[0])],emotion_labels[str(knnman[0])],emotion_labels[str(knncos[0])]]) + "**"
     st.write(common)
-    st.text(logregstring+knneustring+knnmanstring+knncosstring+dtstring+rfstring+svmstring+nnstring)
+    st.text(knneustring+knnmanstring+knncosstring+nnstring+svmstring+rfstring+dtstring+logregstring)
     
 
 with st.form("input"):
