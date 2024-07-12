@@ -44,7 +44,7 @@ def prediction(nn, svm, dt, logreg, rf, knneu, knnman, knncos):
     knneustring = "kNN Euclidean Distance Prediction:" + emotion_labels[str(knneu[0])]
     knnmanstring = "kNN Manhattan Distance Prediction:" + emotion_labels[str(knnman[0])]
     knncosstring = "kNN Cosine Distance Prediction:" + emotion_labels[str(knncos[0])]
-    st.write("test", nnstring)
+    st.write("test", emotion_labels[str(nn[0])])
     
 
 with st.form("input"):
